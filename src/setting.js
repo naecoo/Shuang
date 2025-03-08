@@ -50,13 +50,15 @@ Shuang.app.setting = {
       Object.values(Shuang.resource.schemeList)
         .findIndex(scheme => scheme.startsWith(schemeName))
     ]
-    importJS('scheme/' + this.config.scheme, () => {
+
+    import(`./scheme/${this.config.scheme}.js`).then(() => {
       if (next) Shuang.app.action.next()
-      Shuang.core.current.beforeJudge()
-      this.updateKeyboardLayout()
-      this.updateKeysHint()
-      this.updateTips()
+        Shuang.core.current.beforeJudge()
+        this.updateKeyboardLayout()
+        this.updateKeysHint()
+        this.updateTips()
     })
+
     writeStorage('scheme', this.config.scheme)
   },
   setMode(modeName) {
@@ -210,9 +212,11 @@ Shuang.app.setting = {
       Object.values(Shuang.resource.keyboardLayoutList)
         .findIndex(name => keyboardLayoutName === name)
     ]
-    importJS('keyboard-layout/' + this.config.keyboardLayout, () => {
+
+    import(`./keyboard-layout/${this.config.keyboardLayout}.js`).then(() => {
       this.updateKeyboardLayout()
     })
+
     writeStorage('keyboardLayout', this.config.keyboardLayout)
   },
   updateKeyboardLayout() {

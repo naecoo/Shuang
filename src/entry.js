@@ -1,7 +1,4 @@
-/** last changed: 2025.1.1 */
-
-/** States **/
-const Shuang = {
+globalThis.Shuang = {
   resource: {
     dict: {},
     dictHant: {},
@@ -11,42 +8,29 @@ const Shuang = {
     keyboardLayoutList: {},
     keyboardLayout: {},
     emoji: {
-      right: '✅', wrong: '❎'
-    }
+      right: "✅",
+      wrong: "❎",
+    },
   },
   core: {
     model: {},
     current: {},
     order: {
       shengIndex: 0,
-      yunIndex: 0
+      yunIndex: 0,
     },
     history: [],
-    keyboardLayout: {}
+    keyboardLayout: {},
   },
   app: {
     setting: {
       config: {},
-      reload() { }
+      reload() {},
     },
     importedJS: [],
     modeList: [],
-    action: {}
+    action: {},
   },
-}
-
-const $ = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
-
-function importJS(src = '', onload = () => {}) {
-  if (Shuang.app.importedJS.includes(src)) {
-    onload()
-    return
-  } else {
-    Shuang.app.importedJS.push(src)
-  }
-  src = `build/${src}.min.js`
-  const newScript = document.createElement('script')
-  Object.assign(newScript, { src, onload })
-  document.body.appendChild(newScript)
-}
+};
+globalThis.$ = document.querySelector.bind(document);
+globalThis.$$ = document.querySelectorAll.bind(document);
